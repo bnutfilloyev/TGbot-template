@@ -2,7 +2,7 @@ import logging
 
 from aiogram import Dispatcher
 
-from data.config import ADMINS
+from config import ADMINS
 from loader import bot
 
 

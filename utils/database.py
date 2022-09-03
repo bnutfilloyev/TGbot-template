@@ -1,29 +1,34 @@
 from motor import motor_asyncio
-import os
+from config import load_config
+
+config = load_config()
 
 
-class SingletonClient:
+class MongoDB:
     client = None
     db = None
 
     @staticmethod
     def get_client():
-        if SingletonClient.client is None:
-            MONGODB_USERNAME = os.environ['MONGODB_USERNAME']
-            MONGODB_PASSWORD = os.environ['MONGODB_PASSWORD']
-            MONGODB_HOSTNAME = os.environ['MONGODB_HOSTNAME']
-            MONGODB_PORT = os.environ['MONGODB_PORT']
+        if MongoDB.client is None:
+            MONGODB_USERNAME = config.db.username
+            MONGODB_PASSWORD = config.db.password
+            MONGODB_HOSTNAME = config.db.host
+            MONGODB_PORT = config.db.port
 
-            SingletonClient.client = motor_asyncio.AsyncIOMotorClient("mongodb://{}:{}@{}:{}".format(
+            MongoDB.client = motor_asyncio.AsyncIOMotorClient("mongodb://{}:{}@{}:{}".format(
                 MONGODB_USERNAME, MONGODB_PASSWORD, MONGODB_HOSTNAME, str(MONGODB_PORT)))
 
-        return SingletonClient.client
+            # for local testing
+            # MongoDB.client = motor_asyncio.AsyncIOMotorClient("mongodb://{}:{}".format(MONGODB_HOSTNAME,
+            # str(MONGODB_PORT)))
+
+        return MongoDB.client
 
     @staticmethod
     def get_data_base():
-        if SingletonClient.db is None:
-            client = SingletonClient.get_client()
-            MONGODB_DATABASE = os.environ['MONGODB_DATABASE']
-            SingletonClient.db = client[MONGODB_DATABASE]
+        if MongoDB.db is None:
+            client = MongoDB.get_client()
+            MongoDB.db = client[config.db.database]
 
-        return SingletonClient.db
+        return MongoDB.db

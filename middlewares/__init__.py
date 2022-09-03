@@ -1,5 +1,3 @@
-
-from data import config
 from loader import dp
 
 from .throttling import ThrottlingMiddleware
