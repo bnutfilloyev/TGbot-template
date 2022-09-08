@@ -32,3 +32,8 @@ class MongoDB:
             MongoDB.db = client[config.db.database]
 
         return MongoDB.db
+
+    @staticmethod
+    async def add_some_data():
+        db = MongoDB.get_data_base()
+        db.test.insert_one({"name": "test"})

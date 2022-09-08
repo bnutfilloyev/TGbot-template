@@ -2,12 +2,11 @@ import logging
 
 from aiogram import Dispatcher
 
-from config import ADMINS
-from loader import bot
+from loader import bot, config
 
 
 async def on_startup_notify(dp: Dispatcher):
-    for admin in ADMINS:
+    for admin in config.bot.admins:
         try:
             await dp.bot.send_message(admin, "🚀 Bot started")
 
@@ -16,7 +15,7 @@ async def on_startup_notify(dp: Dispatcher):
 
 
 async def report_log(msg: str):
-    for admin in ADMINS:
+    for admin in config.bot.admins:
         try:
             await bot.send_message(admin, msg)
 
