@@ -18,11 +18,6 @@ class MongoDB:
 
             MongoDB.client = motor_asyncio.AsyncIOMotorClient("mongodb://{}:{}@{}:{}".format(
                 MONGODB_USERNAME, MONGODB_PASSWORD, MONGODB_HOSTNAME, str(MONGODB_PORT)))
-
-            # for local testing
-            # MongoDB.client = motor_asyncio.AsyncIOMotorClient("mongodb://{}:{}".format(MONGODB_HOSTNAME,
-            # str(MONGODB_PORT)))
-
         return MongoDB.client
 
     @staticmethod
