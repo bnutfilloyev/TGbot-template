@@ -7,9 +7,15 @@ config = load_config()
 
 class MongoDB:
     def __init__(self):
-        _url = "mongodb://{}:{}@{}:{}".format(config.db.username, config.db.password, config.db.host, config.db.port)
-        # _url = "mongodb://localhost:27017"
-        self.client = motor_asyncio.AsyncIOMotorClient(_url)
+        if config.bot.debug:
+            self.client = motor_asyncio.AsyncIOMotorClient(host='localhost', port=27017)
+        else:
+            self.client = motor_asyncio.AsyncIOMotorClient(
+                host=config.db.host,
+                port=config.db.port,
+                username=config.db.username,
+                password=config.db.password,
+            )
         self.db = self.client[config.db.database]
 
     async def add_some_data(self):

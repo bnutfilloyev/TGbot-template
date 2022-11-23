@@ -8,6 +8,7 @@ class Bot(BaseModel):
     """
     token: str
     admins: list
+    debug: bool
 
 
 class Database(BaseModel):
@@ -37,6 +38,7 @@ def load_config(path: str = None):
         bot=Bot(
             token=env.str("BOT_TOKEN"),
             admins=env.list("ADMINS"),
+            debug=env.bool("DEBUG", False),
         ),
         db=Database(
             host=env.str("DB_HOST"),
