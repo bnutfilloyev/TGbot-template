@@ -1,4 +1,5 @@
 mongodb
 .idea
 .vscode
-
+.env.dist
+.env
