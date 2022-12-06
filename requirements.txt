@@ -1,4 +1,4 @@
 motor~=2.5.1
-aiogram~=2.20
+aiogram~=2.23.1
 environs~=9.5.0
 pydantic~=1.9.0
