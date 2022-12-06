@@ -1,6 +1,5 @@
-# Aiogram-bot
-
-Telegram Bot Template
+<p align="center"><h1 align="center">AIOGram template</h1></p>
+<p align="center"><h3 align="center">🇺🇿 | Telegram botlar uchun shablon.</h3></p>
 
 # Template arxitekturasi
 
