@@ -1,7 +1,7 @@
 from motor import motor_asyncio
 
 from config import load_config
-
+from urllib.parse import quote_plus
 config = load_config()
 
 
@@ -13,8 +13,8 @@ class MongoDB:
             self.client = motor_asyncio.AsyncIOMotorClient(
                 host=config.db.host,
                 port=config.db.port,
-                username=config.db.username,
-                password=config.db.password,
+                username=quote_plus(config.db.username),
+                password=quote_plus(config.db.password),
             )
         self.db = self.client[config.db.database]
 
