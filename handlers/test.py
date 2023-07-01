@@ -1,4 +1,5 @@
-from loader import dp, db
+from loader import dp
+from utils.database import db
 
 
 @dp.message_handler()

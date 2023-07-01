@@ -1,8 +1,7 @@
 from motor import motor_asyncio
 
-from config import load_config
 from urllib.parse import quote_plus
-config = load_config()
+from config import config
 
 
 class MongoDB:
@@ -20,3 +19,6 @@ class MongoDB:
 
     async def add_some_data(self):
         self.db.test.insert_one({"name": "test"})
+
+
+db = MongoDB()
